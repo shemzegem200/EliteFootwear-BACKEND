@@ -23,7 +23,7 @@ const cloudinary = require('./utils/cloudinary.js');
 const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors({credentials:true,origin: process.env.CORS_ORIGIN ||'*', }));
+app.use(cors({credentials:true,origin: 'https://66a35cefbc7eee55c2887478--joyful-cupcake-90ea45.netlify.app/' }));
 app.use(CookieParser());
 
 
