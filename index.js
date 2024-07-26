@@ -23,10 +23,7 @@ const cloudinary = require('./utils/cloudinary.js');
 const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors({
-  origin: 'https://66a35cefbc7eee55c2887478--joyful-cupcake-90ea45.netlify.app/', // replace with your frontend URL
-  credentials: true
-}));
+app.use(/*cors({credentials:true,origin: '*', })*/);
 app.use(CookieParser());
 
 
@@ -324,7 +321,7 @@ app.post('/api/customer/login', async (req, res) => {
             //send the token as a cookie
             res.cookie('token', token, {
                 sameSite: 'none',
-                secure: /*true*/false
+                secure: true
             }).json(customer);
         });
     } catch (error) {
@@ -371,9 +368,12 @@ app.post("/api/particularcustomer", async (req, res) => {
         if (req.body.phone) {
             req.body.phone = parseInt(req.body.phone);
         }
+        if (req.body.quantity) {
+            req.body.quantity = parseInt(req.body.quantity);
+        }
 
         // Extract fields to update, excluding password
-        const { name, phone, email, favorites, cart, selectedSize } = req.body;
+        const { name, phone, email, favorites, cart, selectedSize, quantity } = req.body;
 
         // Use $set operator to update only specified fields
         const updateFields = {
@@ -382,7 +382,8 @@ app.post("/api/particularcustomer", async (req, res) => {
             ...(email !== undefined && { email }),
             ...(favorites !== undefined && { favorites }),
             ...(cart !== undefined && { cart }),
-            ...(selectedSize !== undefined && { selectedSize })
+            ...(selectedSize !== undefined && { selectedSize }),
+            ...(quantity !== undefined && { quantity })    
         };
 
         // Ensure that at least one field is provided for update
@@ -479,36 +480,6 @@ app.get("/api/customers/fav", async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
-
-
-
-//api call to send email to client for confirming order
-// app.post('/api/send-email', (req, res) => {
-//     const { email, subject, message } = req.body;
-  
-//     const transporter = nodemailer.createTransport({
-//       service: 'Gmail',
-//       auth: {
-//         user: 'shyamvaradharajan200@gmail.com',
-//         pass: 'Gops123!',
-//       },
-//     });
-  
-//     const mailOptions = {
-//       from: 'shyamvaradharajan200@gmail.com',
-//       to: email,
-//       subject: subject,
-//       text: message,
-//     };
-  
-//     transporter.sendMail(mailOptions, (error, info) => {
-//       if (error) {
-//         return res.status(500).send(error.toString());
-//       }
-//       res.status(200).send({result: 'Email sent: ' + info.response});
-//     });
-// });
-
 
 
 //connect to database
