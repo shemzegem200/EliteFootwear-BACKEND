@@ -337,10 +337,10 @@ app.post('/api/customer/login', async (req, res) => {
             //send the token as a cookie
             res.cookie('token1', token, {
                 secure: true, /*true only for production*/
-                sameSite: 'None',
-                overwrite: true,
+                sameSite: 'none',
+                //overwrite: true,
                 partitioned: true,
-                httpOnly: true
+                //httpOnly: true
             }).json(customer);
         });
     } catch (error) {
