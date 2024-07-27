@@ -21,7 +21,7 @@ const cloudinary = require('./utils/cloudinary.js');
 
 //middleware
 const allowedOrigins = [
-  'https://66a4d90876df8d12135a25ae--stirring-youtiao-67777e.netlify.app'
+  'https://66a4dfac0aed3b115686f51f--dashing-bonbon-1925ab.netlify.app'
 ];
 // CORS configuration
 const corsOptions = {
