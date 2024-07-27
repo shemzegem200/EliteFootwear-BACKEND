@@ -328,6 +328,7 @@ app.post('/api/customer/login', async (req, res) => {
             // }).json(customer);
             //instead, send the token part of the res json object
             customer.token = token;
+            console.log(customer);
             res.status(200).json(customer);
         });
     } catch (error) {
