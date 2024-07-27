@@ -319,17 +319,13 @@ app.post('/api/customer/login', async (req, res) => {
         jwt.sign(payload, secret, {expiresIn:'1h'}, (err, token) => {
             if (err) throw err;
             //send the token as a cookie
-            // res.cookie('token1', token, {
-            //     secure: true, /*true only for production*/
-            //     sameSite: 'none',
-            //     //overwrite: true,
-            //     partitioned: true,
-            //     //httpOnly: true
-            // }).json(customer);
-            //instead, send the token part of the res json object
-            customer.token = token;
-            console.log(customer);
-            res.status(200).json(customer);
+            res.cookie('token', token, {
+                secure: true, /*true only for production*/
+                sameSite: 'none',
+                //overwrite: true,
+                partitioned: true,
+                //httpOnly: true
+            }).json(customer);
         });
     } catch (error) {
         console.error('Error during login:', error);
