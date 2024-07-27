@@ -339,7 +339,7 @@ app.post('/api/customer/login', async (req, res) => {
             res.cookie('token', token, {
                 sameSite: 'None',
                 secure: false, /*true only for production*/
-               // partitioned: true, // Set partitioned attribute (if supported)
+                partitioned: true, // Set partitioned attribute (if supported)
                 httpOnly: true
             }).json(customer);
         });
