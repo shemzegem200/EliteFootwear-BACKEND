@@ -323,7 +323,7 @@ app.post('/api/customer/login', async (req, res) => {
                 secure: true, /*true only for production*/
                 sameSite: 'none',
                 //overwrite: true,
-                partitioned: true,
+                //partitioned: true,
                 //httpOnly: true
             }).json(customer);
         });
