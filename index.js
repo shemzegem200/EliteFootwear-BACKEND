@@ -340,7 +340,7 @@ app.post('/api/customer/login', async (req, res) => {
                 secure: true, /*true only for production*/
                 sameSite: 'None',
                 partitioned: true, /*Set partitioned attribute (if supported)*/
-                httpOnly: true
+                //httpOnly: true
             }).json(customer);
         });
     } catch (error) {
