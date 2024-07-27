@@ -335,9 +335,10 @@ app.post('/api/customer/login', async (req, res) => {
         jwt.sign(payload, secret, {expiresIn:'1h'}, (err, token) => {
             if (err) throw err;
             //send the token as a cookie
-            res.cookie('token', token, {
+            res.cookie('token1', token, {
                 secure: true, /*true only for production*/
-                sameSite: 'None',
+                sameSite: 'none',
+                overwrite: true,
                 httpOnly: true
             }).json(customer);
         });
