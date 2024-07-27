@@ -21,7 +21,6 @@ const cloudinary = require('./utils/cloudinary.js');
 
 //middleware
 const allowedOrigins = [
-  'http://localhost:3000',
   'https://66a4c967744d33fb296aad6a--astounding-daifuku-5c2ff7.netlify.app'
 ];
 // CORS configuration
