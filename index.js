@@ -337,7 +337,7 @@ app.post('/api/customer/login', async (req, res) => {
             if (err) throw err;
             //send the token as a cookie
             res.cookie('token', token, {
-                secure: false, /*true only for production*/
+                secure: true, /*true only for production*/
                 sameSite: 'None',
                 partitioned: true, /*Set partitioned attribute (if supported)*/
                 httpOnly: true
