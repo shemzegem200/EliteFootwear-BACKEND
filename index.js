@@ -20,26 +20,10 @@ const cloudinary = require('./utils/cloudinary.js');
 
 
 //middleware
-const allowedOrigins = [
-  'https://66a4f15dc81f7a1e7c946bd2--unrivaled-malabi-97f502.netlify.app'
-];
-// CORS configuration
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-};
-
-
 const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors(corsOptions));
+app.use(cors({credentials:'include', origin:'https://66a4f15dc81f7a1e7c946bd2--unrivaled-malabi-97f502.netlify.app'}));
 app.use(CookieParser());
 
 
